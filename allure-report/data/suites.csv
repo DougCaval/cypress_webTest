@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","57886","Install Cypress Section","","Tue Sep 09 10:48:36 BRT 2025","passed","Tue Sep 09 10:49:34 BRT 2025","","Get Started Page","",""
+"","40546","Why Cypress Section","","Tue Sep 09 10:47:55 BRT 2025","passed","Tue Sep 09 10:48:35 BRT 2025","","Get Started Page","",""
+"","53902","Testing Your App Section","","Tue Sep 09 10:46:57 BRT 2025","passed","Tue Sep 09 10:47:51 BRT 2025","","End to end Testing Page","",""
+"","20871","Your First E2E Test Section","","Tue Sep 09 10:45:39 BRT 2025","passed","Tue Sep 09 10:46:00 BRT 2025","","End to end Testing Page","",""
+"","56357","Testing Your First App Section","","Tue Sep 09 10:46:00 BRT 2025","passed","Tue Sep 09 10:46:56 BRT 2025","","End to end Testing Page","",""
+"","65540","Open the App Section","","Tue Sep 09 10:49:34 BRT 2025","passed","Tue Sep 09 10:50:39 BRT 2025","","Get Started Page","",""
