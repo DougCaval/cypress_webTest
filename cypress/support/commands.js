@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('highlight', { prevSubject: true }, (subject) => {
+  // aplica estilo no elemento
+  cy.wrap(subject).then(($el) => {
+    $el.css('outline', '3px solid red');
+    $el.css('transition', 'outline 0.2s ease-in-out');
+  });
+  return cy.wrap(subject);
+});
+Cypress.Commands.add('removeHighlight', { prevSubject: true }, (subject) => {
+  // remove estilo do elemento
+  cy.wrap(subject).then(($el) => {
+    $el.css('outline', 'none');
+  });
+  return cy.wrap(subject);
+});
