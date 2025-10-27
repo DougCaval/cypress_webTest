@@ -40,4 +40,7 @@ Then("I should see the dashboard int the url {string}", (pageRoute) => {
   cy.allure().step(`I should see the dashboard int the url ${pageRoute}`);
   cy.url().should("include", pageRoute);
   cy.screenshot(`dashboard-url-should-include-${pageRoute.replace(/\//g, '-')}`); // Screenshot with dynamic name
+  cy.prompt([
+    { type: 'input', name: 'feedback', message: 'Any feedback?' }
+  ])
 });

@@ -1,3 +1,12 @@
 {
-    "home": "https://docs.cypress.io/app/get-started/why-cypress"
+    "home": "https://docs.cypress.io/app/get-started/why-cypress",
+    "home_todoList": "https://example.cypress.io/todo",
+    "home_actions": "https://example.cypress.io/commands/actions",
+    "home_aliasing": "https://example.cypress.io/commands/aliasing",
+    "home_assertions": "https://example.cypress.io/commands/assertions",
+    "home_connectors": "https://example.cypress.io/commands/connectors",
+    "home_cookies": "https://example.cypress.io/commands/cookies",
+    "home_cypressapi": "https://example.cypress.io/cypress-api",
+    "home_files": "https://example.cypress.io/files"
+    
 }

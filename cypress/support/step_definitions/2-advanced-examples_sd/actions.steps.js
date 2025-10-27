@@ -1,14 +1,18 @@
-/// <reference types="cypress" />
+import { Given, When } from "@badeball/cypress-cucumber-preprocessor";
+import urls from "../../urls.json";
+import locators from "../../locators.json";
 
-context('Actions', () => {
-  beforeEach(() => {
-    cy.visit('https://example.cypress.io/commands/actions')
-  })
+Given("example to-do app on Actions page", () => {
+    // Cypress starts out with a blank slate for each test
+    // so we must tell it to visit our website with the `cy.visit()` command.
+    // Since we want to visit the same URL at the start of all our tests,
+    // we include it in our beforeEach function so that it runs before each test
+    cy.visit(urls.home_actions)
+     cy.screenshot('Todo-application-actions-page');
+});
 
-  // https://on.cypress.io/interacting-with-elements
-
-  it('.type() - type into a DOM element', () => {
-    // https://on.cypress.io/type
+When("type into a DOM element", () => {
+   // https://on.cypress.io/type
     cy.get('.action-email').type('fake@email.com')
     cy.get('.action-email').should('have.value', 'fake@email.com')
 
@@ -31,42 +35,43 @@ context('Actions', () => {
       // like whether the input is visible or disabled
       .type('disabled error checking', { force: true })
     cy.get('.action-disabled').should('have.value', 'disabled error checking')
-  })
+});
 
-  it('.focus() - focus on a DOM element', () => {
+When("focus on a DOM element", () => {
     // https://on.cypress.io/focus
     cy.get('.action-focus').focus()
     cy.get('.action-focus').should('have.class', 'focus')
       .prev().should('have.attr', 'style', 'color: orange;')
-  })
+});
 
-  it('.blur() - blur off a DOM element', () => {
+When("blur off a DOM element", () => {
     // https://on.cypress.io/blur
     cy.get('.action-blur').type('About to blur')
     cy.get('.action-blur').blur()
     cy.get('.action-blur').should('have.class', 'error')
       .prev().should('have.attr', 'style', 'color: red;')
-  })
+});
 
-  it('.clear() - clears an input or textarea element', () => {
+When("clears an input or textarea element", () => {
     // https://on.cypress.io/clear
     cy.get('.action-clear').type('Clear this text')
     cy.get('.action-clear').should('have.value', 'Clear this text')
     cy.get('.action-clear').clear()
     cy.get('.action-clear').should('have.value', '')
-  })
+});
 
-  it('.submit() - submit a form', () => {
-    // https://on.cypress.io/submit
+When("submit a form", () => {
+   // https://on.cypress.io/submit
     cy.get('.action-form')
       .find('[type="text"]').type('HALFOFF')
 
     cy.get('.action-form').submit()
     cy.get('.action-form').next().should('contain', 'Your form has been submitted!')
-  })
 
-  it('.click() - click on a DOM element', () => {
-    // https://on.cypress.io/click
+}); 
+
+When("click on a DOM element", () => {
+       // https://on.cypress.io/click
     cy.get('.action-btn').click()
 
     // You can click on 9 specific positions of an element:
@@ -111,19 +116,19 @@ context('Actions', () => {
 
     // Ignore error checking prior to clicking
     cy.get('.action-opacity>.btn').click({ force: true })
-  })
+}); 
 
-  it('.dblclick() - double click on a DOM element', () => {
-    // https://on.cypress.io/dblclick
+When("double click on a DOM element", () => {
+   // https://on.cypress.io/dblclick
 
     // Our app has a listener on 'dblclick' event in our 'scripts.js'
     // that hides the div and shows an input on double click
     cy.get('.action-div').dblclick()
     cy.get('.action-div').should('not.be.visible')
     cy.get('.action-input-hidden').should('be.visible')
-  })
+}); 
 
-  it('.rightclick() - right click on a DOM element', () => {
+When("right click on a DOM element", () => {
     // https://on.cypress.io/rightclick
 
     // Our app has a listener on 'contextmenu' event in our 'scripts.js'
@@ -131,10 +136,10 @@ context('Actions', () => {
     cy.get('.rightclick-action-div').rightclick()
     cy.get('.rightclick-action-div').should('not.be.visible')
     cy.get('.rightclick-action-input-hidden').should('be.visible')
-  })
+}); 
 
-  it('.check() - check a checkbox or radio element', () => {
-    // https://on.cypress.io/check
+When("check a checkbox or radio element", () => {
+   // https://on.cypress.io/check
 
     // By default, .check() will check all
     // matching checkbox or radio elements in succession, one after another
@@ -158,10 +163,10 @@ context('Actions', () => {
 
     cy.get('.action-radios [type="radio"]').check('radio3', { force: true })
     cy.get('.action-radios [type="radio"]').should('be.checked')
-  })
+}); 
 
-  it('.uncheck() - uncheck a checkbox element', () => {
-    // https://on.cypress.io/uncheck
+When("uncheck a checkbox element", () => {
+       // https://on.cypress.io/uncheck
 
     // By default, .uncheck() will uncheck all matching
     // checkbox elements in succession, one after another
@@ -193,10 +198,10 @@ context('Actions', () => {
     // Ignore error checking prior to unchecking
     cy.get('.action-check [disabled]').uncheck({ force: true })
     cy.get('.action-check [disabled]').should('not.be.checked')
-  })
+}); 
 
-  it('.select() - select an option in a <select> element', () => {
-    // https://on.cypress.io/select
+When("select an option in a select element", () => {
+   // https://on.cypress.io/select
 
     // at first, no option should be selected
     cy.get('.action-select')
@@ -230,10 +235,10 @@ context('Actions', () => {
     // assert the selected values include oranges
     cy.get('.action-select-multiple')
       .invoke('val').should('include', 'fr-oranges')
-  })
+}); 
 
-  it('.scrollIntoView() - scroll an element into view', () => {
-    // https://on.cypress.io/scrollintoview
+When("scroll an element into view", () => {
+   // https://on.cypress.io/scrollintoview
 
     // normally all of these buttons are hidden,
     // because they're not within
@@ -262,10 +267,10 @@ context('Actions', () => {
     cy.get('#scroll-both button').scrollIntoView()
     cy.get('#scroll-both button')
       .should('be.visible')
-  })
+}); 
 
-  it('.trigger() - trigger an event on a DOM element', () => {
-    // https://on.cypress.io/trigger
+When("trigger an event on a DOM element", () => {
+   // https://on.cypress.io/trigger
 
     // To interact with a range input (slider)
     // we need to set its value & trigger the
@@ -280,9 +285,9 @@ context('Actions', () => {
     cy.get('.trigger-input-range')
       .get('input[type=range]').siblings('p')
       .should('have.text', '25')
-  })
+}); 
 
-  it('cy.scrollTo() - scroll the window or element to a position', () => {
+When("scroll the window or element to a position", () => {
     // https://on.cypress.io/scrollto
 
     // You can scroll to 9 specific positions of an element:
@@ -317,5 +322,4 @@ context('Actions', () => {
 
     // control the duration of the scroll (in ms)
     cy.get('#scrollable-both').scrollTo('center', { duration: 2000 })
-  })
-})
+}); 

@@ -1,19 +1,33 @@
 {
-    "leftMenu" : {
-        "getStarted": ":nth-child(2) > :nth-child(1) > .flex",
-        "whyCypress": ":nth-child(1) > .transition-all > .overflow-hidden > :nth-child(1) > .group",
-        "installCypress": ":nth-child(1) > .transition-all > .overflow-hidden > :nth-child(2) > .group",
-        "openTheApp": ":nth-child(1) > .transition-all > .overflow-hidden > :nth-child(3) > .group",
-        "e2eTesting": ":nth-child(2) > :nth-child(2) > .flex",
-        "yourFirstTest": ":nth-child(2) > :nth-child(2) > .transition-all > .overflow-hidden > :nth-child(1) > .group",
-        "testingYourApp": ":nth-child(2) > :nth-child(2) > .transition-all > .overflow-hidden > :nth-child(2) > .group",
-        "componentTesting": "//div//ul//li//button[contains(.,'Component Testing')]",
-        "coreConcepts": "//div//ul//li//button[contains(.,'Core Concepts')]",
-        "guides": "//div//ul//li//button[contains(.,'Guides')]",
-        "continuousIntegration": "//div//ul//li//button[contains(.,'Continuous Integration')]",
-        "tooling": "//div//ul//li//button[contains(.,'Tooling')]",
-        "plugins": "//div//ul//li//button[contains(.,'Plugins')]",
-        "references": "//div//ul//li//button[contains(.,'References')]"
-    },
-    "accept_cookies": ".osano-cm-accept"
+    "leftMenu": {
+        "getStartedMenu": {
+            "getStartedMenu": "//*[contains(text(),'Get Started')]",
+            "whyCypress": "//*[contains(text(),'Why Cypress?')]",
+            "installCypress": "//*[contains(text(),'Install Cypress')]",
+            "openTheApp": "//*[contains(text(),'Open the App')]"
+        },
+        "e2eTestingMenu": {
+            "e2eTesting": ":nth-child(2) > :nth-child(2) > .flex",
+            "yourFirstTest": "//*[contains(text(),'Your First Test')]",
+            "testingYourApp": "//*[contains(text(),'Testing Your App')]"
+        },
+        "componentTestingMenu": {
+            "componentTesting": "//*[contains(text(),'Component Testing')]",
+            "getStarted": "//*[contains(text(),'Your First Component Test')]",
+            "stylingComponents": "//*[contains(text(),'Stayling Components')]",
+            "configuration": "//*[contains(text(),'Configuration')]"
+        },
+        "coreConceptsMenu": {
+            "coreConcepts": "//*[contains(text(),'Core Concepts')]",
+            "introduction": "//*[contains(text(),'Introduction')]",
+            "testingTypes": "//*[contains(text(),'Testing Types')]",
+            "writingAndOrganizingTests": "//*[contains(text(),'Writing and Organizing Tests')]",
+            "interactingWithElements": "//*[contains(text(),'Interacting with Elements')]",
+            "variablesAndAliases": "//*[contains(text(),'Variables and Aliases')]",
+            "testIsolation": "//*[contains(text(),'Test Isolation')]",
+            "retryability": "//*[contains(text(),'Retry-ability')]",
+            "openMode": "//*[contains(text(),'Open Mode')]",
+            "bestPratices": "//*[contains(text(),'Best Practices')]"
+        }
+    }
 }

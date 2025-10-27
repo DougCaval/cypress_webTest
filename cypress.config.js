@@ -7,10 +7,8 @@ const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
-      // enable cucumber preprocessor
       await addCucumberPreprocessorPlugin(on, config);
-      allureWriter(on, config); // optional, for allure reports
-
+      allureWriter(on, config);
       on(
         "file:preprocessor",
         createBundler({
@@ -24,11 +22,11 @@ module.exports = defineConfig({
     },
     screenshotOnRunFailure: true,
     specPattern: "**/*.feature",
-    baseUrl: "https://docs.cypress.io/app/get-started/why-cypress", // adjust to your app
-    // 👇 Tell cucumber where to find your steps
+    baseUrl: "https://docs.cypress.io/app/get-started/why-cypress",
+
     cucumber: {
       stepDefinitions: [
-        "cypress/e2e/**/*.steps.js",
+        "cypress/support/step_definitions/**/*.steps.js",
         "cypress/support/step_definitions/**/*.js"
       ]
     }

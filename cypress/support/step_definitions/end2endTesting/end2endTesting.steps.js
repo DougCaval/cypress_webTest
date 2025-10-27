@@ -24,3 +24,13 @@ When("I click on Testing your App section", () => {
   cy.get(locators.leftMenu.testingYourApp).click();
   cy.screenshot('testing-your-app-section');
 });
+
+
+When("test a public api", () => {
+cy.request('https://jsonplaceholder.cypress.io/users')
+  .then((response) => {
+    expect(response.status).to.eq(200);
+    expect(response.body).to.have.length(10);
+    expect(response.body[0]).to.have.property('name', 'Leanne Graham');
+  });
+});
