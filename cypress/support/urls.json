@@ -7,6 +7,14 @@
     "home_connectors": "https://example.cypress.io/commands/connectors",
     "home_cookies": "https://example.cypress.io/commands/cookies",
     "home_cypressapi": "https://example.cypress.io/cypress-api",
-    "home_files": "https://example.cypress.io/files"
+    "home_files": "https://example.cypress.io/files",
+    "home_location": "https://example.cypress.io/commands/location",
+    "home_misc": "https://example.cypress.io/commands/misc",
+    "home_navigation": "https://example.cypress.io",
+    "home_networkRequests": "https://example.cypress.io/commands/network-requests",
+    "home_querying": "https://example.cypress.io/commands/querying",
+    "home_spiesStubsClocks": "https://example.cypress.io/commands/spies-stubs-clocks",
+    "home_storage": "https://example.cypress.io/commands/storage",
+    "home_traversal": "https://example.cypress.io/commands/traversal"
     
 }
