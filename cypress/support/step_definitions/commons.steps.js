@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { loginSauceDemo } from '../../support/commands';
-import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage } from '../../support/locators.json';
+import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage, productsListingPage } from '../../support/locators.json';
 
 // LOGIN
 Given('que estou na página de login', () => {
@@ -84,4 +84,67 @@ When('eu clico no menu e seleciono logout', () => {
 Then('devo ser redirecionado para a página de login', () => {
   cy.url().should('include', '/');
   cy.get(loginPage.loginButton).should('be.visible');
+});
+
+// LISTAGEM DE PRODUTOS
+Then('devo visualizar todos os produtos na listagem', () => {
+  cy.get(productsListingPage.inventoryItemsList).should('be.visible');
+  cy.get(productsListingPage.inventoryItem).should('have.length.greaterThan', 0);
+});
+
+Then('todos os produtos devem exibir imagem, nome e preço', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemImg).should('be.visible');
+    cy.wrap($item).find(productsListingPage.inventoryItemName).should('be.visible');
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).should('be.visible');
+  });
+});
+
+When('eu seleciono a opção de ordenação {string}', (opcaoOrdenacao) => {
+  cy.get(productsListingPage.sortContainer).select(opcaoOrdenacao);
+});
+
+Then('os produtos devem estar ordenados por preço em ordem crescente', () => {
+  const precos = [];
+  
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).then(($price) => {
+      const priceText = $price.text().replace('$', '');
+      precos.push(parseFloat(priceText));
+    });
+  }).then(() => {
+    const precosOrdenados = [...precos].sort((a, b) => a - b);
+    expect(precos).to.deep.equal(precosOrdenados);
+  });
+});
+
+Then('os produtos devem estar ordenados por nome em ordem alfabética crescente', () => {
+  const nomes = [];
+  
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemName).then(($name) => {
+      nomes.push($name.text());
+    });
+  }).then(() => {
+    const nomesOrdenados = [...nomes].sort((a, b) => a.localeCompare(b));
+    expect(nomes).to.deep.equal(nomesOrdenados);
+  });
+});
+
+Then('cada item deve ter imagem visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemImg).should('be.visible');
+  });
+});
+
+Then('cada item deve ter nome visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemName).should('be.visible');
+  });
+});
+
+Then('cada item deve ter preço visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).should('be.visible');
+  });
 });
