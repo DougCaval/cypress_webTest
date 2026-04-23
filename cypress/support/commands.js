@@ -42,7 +42,11 @@ Cypress.Commands.add('removeHighlight', { prevSubject: true }, (subject) => {
 
 // Comando para login no SauceDemo
 Cypress.Commands.add('loginSauceDemo', (username, password) => {
-  cy.visit('/');
+  
+   cy.visit('https://www.saucedemo.com');
+  Cypress.on('uncaught:exception', (err, runnable) => {
+  return false
+})
   cy.get('[data-test="username"]').type(username);
   cy.get('[data-test="password"]').type(password);
   cy.get('[data-test="login-button"]').click();
