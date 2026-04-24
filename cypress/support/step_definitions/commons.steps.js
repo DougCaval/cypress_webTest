@@ -2,6 +2,7 @@ import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { loginSauceDemo } from '../../support/commands';
 import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage, productsListingPage } from '../../support/locators.json';
 
+
 // LOGIN
 Given('que estou na página de login', () => {
   cy.visit('https://www.saucedemo.com/', {
@@ -51,6 +52,38 @@ When('adiciono os produtos:', (dataTable) => {
   dataTable.hashes().forEach(row => {
     cy.contains('.inventory_item', row.produto).find('button').click();
   });
+});
+
+When('eu acesso o carrinho', () => {
+  cy.get(cartPage.cartIcon).click();
+});
+
+When('removo o produto {string} do carrinho', (produto) => {
+  cy.contains(cartPage.cartItem, produto).find('button').click();
+});
+
+Then('o badge do carrinho deve mostrar {string}', (quantidade) => {
+  cy.get(cartPage.cartBadge).should('have.text', quantidade);
+});
+
+Then('o badge do carrinho não deve estar visível', () => {
+  cy.get('body').then(($body) => {
+    if ($body.find(cartPage.cartBadge).length) {
+      cy.get(cartPage.cartBadge).should('not.be.visible');
+    } else {
+      expect($body.find(cartPage.cartBadge).length).to.equal(0);
+    }
+  });
+});
+
+Then('devo ver os itens no carrinho:', (dataTable) => {
+  dataTable.hashes().forEach(row => {
+    cy.contains(cartPage.cartItem, row.produto).should('be.visible');
+  });
+});
+
+Then('não devo ver o produto {string} no carrinho', (produto) => {
+  cy.get(cartPage.cartItem).should('not.contain', produto);
 });
 
 When('finalizo a compra com os dados:', (dataTable) => {
