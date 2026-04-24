@@ -11,6 +11,10 @@
   },
   "cartPage": {
     "cartIcon": ".shopping_cart_link",
+    "cartBadge": ".shopping_cart_badge",
+    "cartItem": ".cart_item",
+    "cartItemName": ".inventory_item_name",
+    "removeButton": ".cart_button",
     "checkoutButton": "[data-test='checkout']"
   },
   "checkoutPage": {
