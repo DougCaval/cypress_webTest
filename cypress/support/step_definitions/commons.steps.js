@@ -1,5 +1,4 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
-import { loginSauceDemo } from '../../support/commands';
 import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage } from '../../support/locators.json';
 
 // LOGIN
@@ -78,7 +77,15 @@ Given('que estou logado como {string} com senha {string}', (usuario, senha) => {
 
 When('eu clico no menu e seleciono logout', () => {
   cy.get(menuPage.menuButton).click();
-  cy.get(menuPage.logoutButton).click();
+  cy.get('.bm-menu').should('be.visible');
+  cy.get(menuPage.logoutButton).should('be.visible').click();
+});
+
+When('faço logout', () => {
+  cy.wait(500); // Wait for page to stabilize after checkout
+  cy.get(menuPage.menuButton).should('be.visible').click();
+  cy.get('.bm-menu').should('be.visible');
+  cy.get(menuPage.logoutButton).should('be.visible').click();
 });
 
 Then('devo ser redirecionado para a página de login', () => {
