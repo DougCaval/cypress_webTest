@@ -9,6 +9,7 @@ Feature: Home / Listagem de Produtos
     Then devo ver todos os produtos na listagem
     And a quantidade de produtos deve ser maior que 0
 
+
   Scenario: Ordenar produtos por preço (menor → maior)
     When eu ordeno os produtos por preço "low to high"
     Then os produtos devem estar ordenados por preço crescente

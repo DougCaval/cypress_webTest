@@ -6,7 +6,7 @@ Feature: Fluxo Completo de Compra no SauceDemo
     And adiciono o produto "Sauce Labs Backpack" ao carrinho
     And finalizo a compra com os dados:
       | nome     | sobrenome | cep     |
-      | Carlos   | Teste     | 12345-000 |
+      | Carlos   | Teste     | 12346-000 |
     Then devo ver a mensagem de sucesso "Thank you for your order!"
 
   Scenario: Fluxo com múltiplos produtos no carrinho
@@ -18,5 +18,5 @@ Feature: Fluxo Completo de Compra no SauceDemo
       | Sauce Labs Bike Light  |
     And finalizo a compra com os dados:
       | nome     | sobrenome | cep     |
-      | Carlos   | Teste     | 12345-000 |
+      | Carlos   | Teste     | 12346-000 |
     Then devo ver a mensagem de sucesso "Thank you for your order!"
