@@ -1,6 +1,6 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 import { loginSauceDemo } from '../../support/commands';
-import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage } from '../../support/locators.json';
+import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage, carrinhoPage } from '../../support/locators.json';
 
 // LOGIN
 Given('que estou na página de login', () => {
@@ -79,4 +79,35 @@ When('eu clico no menu e seleciono logout', () => {
 Then('devo ser redirecionado para a página de login', () => {
   cy.url().should('include', '/');
   cy.get(loginPage.loginButton).should('be.visible');
+});
+
+// CARRINHO
+When('eu adiciono o produto {string} ao carrinho', (produto) => {
+  cy.contains('.inventory_item', produto).find('button').click();
+});
+
+Then('devo ver o produto no carrinho', () => {
+  cy.get(carrinhoPage.cartIcon).click();
+  cy.get(carrinhoPage.cartItem).should('have.length.greaterThan', 0);
+});
+
+When('eu removo o produto do carrinho', () => {
+  cy.get('[data-test="remove-sauce-labs-backpack"]').click();
+});
+
+Then('devo ver o carrinho vazio', () => {
+  cy.get(carrinhoPage.cartList).should('not.exist');
+});
+
+Then('devo ver o contador do carrinho mostrando {string}', (quantidade) => {
+  cy.get(carrinhoPage.cartBadge).should('contain', quantidade);
+});
+
+When('eu acesso o carrinho', () => {
+  cy.get(carrinhoPage.cartIcon).click();
+});
+
+Then('devo ver o produto {string} na página do carrinho', (produto) => {
+  cy.url().should('include', '/cart.html');
+  cy.get(carrinhoPage.cartItemName).should('contain', produto);
 });
