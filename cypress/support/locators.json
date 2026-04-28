@@ -11,6 +11,10 @@
   },
   "cartPage": {
     "cartIcon": ".shopping_cart_link",
+    "cartBadge": ".shopping_cart_badge",
+    "cartItem": ".cart_item",
+    "cartItemName": ".inventory_item_name",
+    "removeButton": ".cart_button",
     "checkoutButton": "[data-test='checkout']"
   },
   "checkoutPage": {
@@ -26,5 +30,13 @@
   "menuPage": {
     "menuButton": "#react-burger-menu-btn",
     "logoutButton": "#logout_sidebar_link"
+  },
+  "productsListingPage": {
+    "sortContainer": ".product_sort_container",
+    "inventoryItemsList": ".inventory_container",
+    "inventoryItem": ".inventory_item",
+    "inventoryItemName": ".inventory_item_name",
+    "inventoryItemPrice": ".inventory_item_price",
+    "inventoryItemImg": ".inventory_item_img img"
   }
 }

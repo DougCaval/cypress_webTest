@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
-import { loginPage, inventoryPage, cartPage, checkoutPage, finishPage, menuPage } from '../../support/locators.json';
+
 
 // LOGIN
 Given('que estou na página de login', () => {
@@ -52,6 +52,38 @@ When('adiciono os produtos:', (dataTable) => {
   });
 });
 
+When('eu acesso o carrinho', () => {
+  cy.get(cartPage.cartIcon).click();
+});
+
+When('removo o produto {string} do carrinho', (produto) => {
+  cy.contains(cartPage.cartItem, produto).find('button').click();
+});
+
+Then('o badge do carrinho deve mostrar {string}', (quantidade) => {
+  cy.get(cartPage.cartBadge).should('have.text', quantidade);
+});
+
+Then('o badge do carrinho não deve estar visível', () => {
+  cy.get('body').then(($body) => {
+    if ($body.find(cartPage.cartBadge).length) {
+      cy.get(cartPage.cartBadge).should('not.be.visible');
+    } else {
+      expect($body.find(cartPage.cartBadge).length).to.equal(0);
+    }
+  });
+});
+
+Then('devo ver os itens no carrinho:', (dataTable) => {
+  dataTable.hashes().forEach(row => {
+    cy.contains(cartPage.cartItem, row.produto).should('be.visible');
+  });
+});
+
+Then('não devo ver o produto {string} no carrinho', (produto) => {
+  cy.get(cartPage.cartItem).should('not.contain', produto);
+});
+
 When('finalizo a compra com os dados:', (dataTable) => {
   cy.get(cartPage.cartIcon).click();
   cy.get(cartPage.checkoutButton).click();
@@ -91,4 +123,67 @@ When('faço logout', () => {
 Then('devo ser redirecionado para a página de login', () => {
   cy.url().should('include', '/');
   cy.get(loginPage.loginButton).should('be.visible');
+});
+
+// LISTAGEM DE PRODUTOS
+Then('devo visualizar todos os produtos na listagem', () => {
+  cy.get(productsListingPage.inventoryItemsList).should('be.visible');
+  cy.get(productsListingPage.inventoryItem).should('have.length.greaterThan', 0);
+});
+
+Then('todos os produtos devem exibir imagem, nome e preço', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemImg).should('be.visible');
+    cy.wrap($item).find(productsListingPage.inventoryItemName).should('be.visible');
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).should('be.visible');
+  });
+});
+
+When('eu seleciono a opção de ordenação {string}', (opcaoOrdenacao) => {
+  cy.get(productsListingPage.sortContainer).select(opcaoOrdenacao);
+});
+
+Then('os produtos devem estar ordenados por preço em ordem crescente', () => {
+  const precos = [];
+  
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).then(($price) => {
+      const priceText = $price.text().replace('$', '');
+      precos.push(parseFloat(priceText));
+    });
+  }).then(() => {
+    const precosOrdenados = [...precos].sort((a, b) => a - b);
+    expect(precos).to.deep.equal(precosOrdenados);
+  });
+});
+
+Then('os produtos devem estar ordenados por nome em ordem alfabética crescente', () => {
+  const nomes = [];
+  
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemName).then(($name) => {
+      nomes.push($name.text());
+    });
+  }).then(() => {
+    const nomesOrdenados = [...nomes].sort((a, b) => a.localeCompare(b));
+    expect(nomes).to.deep.equal(nomesOrdenados);
+  });
+});
+
+Then('cada item deve ter imagem visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemImg).should('be.visible');
+  });
+});
+
+Then('cada item deve ter nome visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemName).should('be.visible');
+  });
+});
+
+Then('cada item deve ter preço visível', () => {
+  cy.get(productsListingPage.inventoryItem).each(($item) => {
+    cy.wrap($item).find(productsListingPage.inventoryItemPrice).should('be.visible');
+  });
 });
