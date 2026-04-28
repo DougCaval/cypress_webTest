@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^17.2.1",
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@shelex/cypress-allure-plugin": "^2.13.2",
     "cypress": "^13.0.0",
@@ -28,6 +28,7 @@
       "cypress/e2e/**/*.js",
       "cypress/support/step_definitions/**/*.js"
     ]
+
   }
   
 }

@@ -34,5 +34,15 @@
     "menuPage": {
         "menuButton": "#react-burger-menu-btn",
         "logoutButton": "#logout_sidebar_link"
+    },
+    "carrinhoPage": {
+        "cartIcon": ".shopping_cart_link",
+        "cartBadge": ".shopping_cart_badge",
+        "cartItem": ".cart_item",
+        "cartItemName": ".inventory_item_name",
+        "removeButton": ".inventory_item_desc button",
+        "checkoutButton": "[data-test='checkout']",
+        "continueShopping": "[data-test='continue-shopping']",
+        "cartList": ".cart_list"
     }
 }
