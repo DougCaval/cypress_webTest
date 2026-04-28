@@ -7,7 +7,15 @@
         "errorMessage": "[data-test=\"error\"]"
     },
     "inventoryPage": {
-        "inventoryContainer": ".inventory_list"
+        "inventoryContainer": ".inventory_list",
+        "inventoryItem": ".inventory_item",
+        "productImage": ".inventory_item_img",
+        "productName": ".inventory_item_name",
+        "productPrice": ".inventory_item_price",
+        "productAddButton": ".inventory_item button",
+        "sortContainer": ".product_sort_container",
+        "sortOptionLowToHigh": "option[value='lohi']",
+        "sortOptionAZ": "option[value='az']"
     },
     "cartPage": {
         "cartIcon": ".shopping_cart_link",

@@ -47,6 +47,7 @@ Cypress.Commands.add('loginSauceDemo', (username, password) => {
   Cypress.on('uncaught:exception', (err, runnable) => {
   return false
 })
+
   cy.get('[data-test="username"]').type(username);
   cy.get('[data-test="password"]').type(password);
   cy.get('[data-test="login-button"]').click();

@@ -16,10 +16,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^17.2.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@shelex/cypress-allure-plugin": "^2.13.2",
     "cypress": "^13.0.0",
-    "@badeball/cypress-cucumber-preprocessor": "^16.0.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.0.0",
-    "@badeball/cypress-cucumber-preprocessor/esbuild": "^16.0.0"
+    "esbuild": "^0.28.0"
+  },
+
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/e2e/**/*.js",
+      "cypress/support/step_definitions/**/*.js"
+    ]
   }
+  
 }
