@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
 
     /* Path mapping */
-    "baseUrl": "./",
+    "baseUrl": "https://www.saucedemo.com",
     "paths": {
       "@/*": ["cypress/*"],
       "@support/*": ["cypress/support/*"],

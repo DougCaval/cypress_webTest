@@ -2,14 +2,6 @@ import { After, AfterStep, Before, BeforeStep, Given, When } from "@badeball/cyp
 import urls from "../../urls.json";
 import locators from "../../locators.json";
 
-BeforeStep(() => {
-    Cypress.Cookies.debug(true)
-});
-
-AfterStep(() => {
-    cy.clearCookies();
-});
-
 Given("example to-do app on Cookies page", () => {
     // clear cookies again after visiting to remove
     // any 3rd party cookies picked up such as cloudflare
