@@ -27,7 +27,14 @@
             "testIsolation": "//*[contains(text(),'Test Isolation')]",
             "retryability": "//*[contains(text(),'Retry-ability')]",
             "openMode": "//*[contains(text(),'Open Mode')]",
-            "bestPratices": "//*[contains(text(),'Best Practices')]"
+            "bestPractices": "//*[contains(text(),'Best Practices')]"
         }
+    }
+
+    ,"loginPage": {
+        "usernameInput": "#user-name",
+        "passwordInput": "#password",
+        "loginButton": "#login-button",
+        "errorMessage": "[data-test='error']"
     }
 }
