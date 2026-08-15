@@ -1,6 +1,6 @@
 Feature: Get Started Page
 
-    Scenario Outline: Scenario Outline name
+    Scenario Outline: Validate Get Started documentation section
       Given I open the dashboard page
       When I click on Get Started option
       And I click on "<section>" section

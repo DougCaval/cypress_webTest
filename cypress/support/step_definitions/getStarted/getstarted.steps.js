@@ -4,7 +4,7 @@ import locators from "../../locators.json";
 
 Given("I open the dashboard page", () => {
   cy.visit(urls.home);
-  cy.screenshot('dashboard-page');
+ // cy.screenshot('dashboard-page');
 });
 
 When("I click on Get Started option", () => {
@@ -24,19 +24,19 @@ cy.contains('Get Started').click({ force: true });
 When("I click on Install Cypress section", () => {
   cy.wait(5000);
   cy.get(locators.leftMenu.getStartedMenu.installCypress).click();
-  cy.screenshot('install-cypress-section');
+ // cy.screenshot('install-cypress-section');
 });
 
 When('I click on {string} section', (section) => {
     cy.wait(5000);
     cy.contains(section).click({ force: true });
-    cy.screenshot(`section-${section}`);
+   // cy.screenshot(`section-${section}`);
 });
 
 Then("I confirm Get Started page is on {string}", (pagetitle) => {
 //  cy.allure().step(`I confirm Get Started page is on ${pagetitle}`);
   cy.get('h1').should('contain.text', pagetitle);
-  cy.screenshot(`get-started-page-on-${pagetitle}`); // Screenshot with dynamic name
+ // cy.screenshot(`get-started-page-on-${pagetitle}`); // Screenshot with dynamic name
 });
 
 
