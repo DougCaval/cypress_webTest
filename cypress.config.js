@@ -8,7 +8,7 @@ module.exports = defineConfig({
   e2e: {
     async setupNodeEvents(on, config) {
       await addCucumberPreprocessorPlugin(on, config);
-      allureWriter(on, config);
+       allureWriter(on, config);
       on(
         "file:preprocessor",
         createBundler({
