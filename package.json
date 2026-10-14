@@ -18,15 +18,21 @@
     "url": "https://github.com/DougCaval/cypress_webTest/issues"
   },
   "homepage": "https://github.com/DougCaval/cypress_webTest#readme",
-        "devDependencies": {
+  "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^28.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@shelex/cypress-allure-plugin": "^2.41.2",
-    "cypress": "^16.1.1"
+    "@types/node": "^26.6.4",
+    "cypress": "^16.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": [
-      "cypress/support/step_definitions/end2endTesting/**/*.stps.js"
+      "cypress/support/step_definitions/end2endTesting/**/*.steps.js"
     ]
+  },
+  "allowScripts": {
+    "cypress@16.1.1": true
   }
 }
