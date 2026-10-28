@@ -1,34 +1,56 @@
 const { defineConfig } = require("cypress");
+ 
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
-const { addCucumberPreprocessorPlugin } = require("@badeball/cypress-cucumber-preprocessor");
-const { createEsbuildPlugin } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
-
+ 
+const {
+  addCucumberPreprocessorPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor");
+ 
+const {
+  createEsbuildPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor/esbuild");
+ 
+const { allureCypress } = require("allure-cypress/reporter");
+ 
+const cypressOnFix = require("cypress-on-fix");
+ 
 module.exports = defineConfig({
   e2e: {
+    baseUrl: "https://www.saucedemo.com",
+ 
+    specPattern: "cypress/e2e/**/*.feature",
+ 
+    screenshotOnRunFailure: true,
+ 
     async setupNodeEvents(on, config) {
+ 
+      // Permite que Cucumber e Allure utilizem os eventos do Cypress
+      on = cypressOnFix(on);
+ 
+      // Cucumber
       await addCucumberPreprocessorPlugin(on, config);
-      allureWriter(on, config);
+ 
+      // Esbuild
       on(
         "file:preprocessor",
         createBundler({
           plugins: [createEsbuildPlugin(config)],
-        }),
-        'after: screenshot', (details) => {
-        }
+        })
       );
-
+ 
+      // Allure
+      allureCypress(on, config, {
+        resultsDir: "allure-results",
+      });
+ 
       return config;
     },
-    screenshotOnRunFailure: true,
-    specPattern: "**/*.feature",
-    baseUrl: "https://docs.cypress.io/app/get-started/why-cypress",
-
+ 
     cucumber: {
       stepDefinitions: [
-        "cypress/support/step_definitions/**/*.steps.js",
-        "cypress/support/step_definitions/**/*.js"
-      ]
-    }
+        "cypress/support/step_definitions/end2endTesting/**/*.steps.js",
+        "cypress/support/step_definitions/end2endTesting/**/*.js"
+      ],
+    },
   },
 });
